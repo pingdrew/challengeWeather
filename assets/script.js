@@ -6,7 +6,12 @@ $(document).ready(function () {
     var myKey = '16ceabcc9c9a6f135440a6efd1165492'
 
     var input = $('#username').val().replaceAll(" ", "")
-    console.log(input);
+    $('#username').val().replaceAll("")
+    var localCities = [];
+    localCities.push(localStorage.getItem('pastCities'))
+    localCities.push(input)
+    localStorage.setItem('pastCities', localCities);
+    console.log(localCities);
 
     var geoURL = "http://api.openweathermap.org/geo/1.0/direct?q=" + input + "&limit=1&appid=" + myKey;
 
@@ -28,7 +33,7 @@ $(document).ready(function () {
 
         $('.5dayFork').each(function(i) {
           $(this).find('.date').text(data.list[i*8+4].dt_txt.split(' ')[0]);
-          $(this).find('.condition').text('EMOJI');
+          $(this).find('.condition').attr('src', '#');
           $(this).find('.temp').text('Temperature: ' + data.list[i*8+4].main.temp + 'F');
           $(this).find('.wind').text('Wind speed: ' + data.list[i*8+4].main.temp + 'mph');
           $(this).find('.humid').text('Humidity: ' + data.list[i*8+4].main.temp + '%');
@@ -50,3 +55,4 @@ $(document).ready(function () {
     });
   });
 });
+// http://openweathermap.org/img/w/{image.png}
