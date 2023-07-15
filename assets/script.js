@@ -20,7 +20,7 @@ $(document).ready(function () {
 
 // this function gets the data you searched and finds it on a geo locater api
   function fetchData(choice) {
-    var geoURL = "http://api.openweathermap.org/geo/1.0/direct?q=" + choice + "&limit=1&appid=" + myKey;
+    var geoURL = "https://api.openweathermap.org/geo/1.0/direct?q=" + choice + "&limit=1&appid=" + myKey;
 
     fetch(geoURL, {
       cache: 'reload',
@@ -31,7 +31,7 @@ $(document).ready(function () {
     }).then(function (data) {
 
       // then puts the found geolocation into the weather apis so they get results for that place
-      var owmURL = 'http://api.openweathermap.org/data/2.5/forecast?lat=' + data[0].lat + '&lon=' + data[0].lon + '&units=imperial&appid=' + myKey;
+      var owmURL = 'https://api.openweathermap.org/data/2.5/forecast?lat=' + data[0].lat + '&lon=' + data[0].lon + '&units=imperial&appid=' + myKey;
       var todayWeather = 'https://api.openweathermap.org/data/2.5/weather?lat=' + data[0].lat + '&lon=' + data[0].lon + '&units=imperial&appid=' + myKey;
 
       fetch(owmURL).then(function (response) {
